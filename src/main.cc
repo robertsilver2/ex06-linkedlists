@@ -19,5 +19,10 @@ int main(int argc, char *argv[]) {
     for(int i= 0; i<1; i++) {
         LinkedList<uint64_t> testing1;
         LinkedList<uint64_t> testing2(testing1);
+        std::cout << "testing2 empty? " << testing2.empty() << std::endl;
+        /*LinkedList<uint64_t> testing3(100);
+        uint64_t testVal = testing3.front();
+        std::cout << "testing3 head->data = " << testVal <<std::endl;*/
     }//put in a loop so object lifetime will end before end of main, test destructor
+    std::cout << "loop exited?" << std::endl;
 }

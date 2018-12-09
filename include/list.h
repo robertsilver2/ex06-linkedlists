@@ -9,6 +9,11 @@ namespace edu {
 				class LinkedList {
 				private:
 					struct Node {
+					    Node(){
+					        _data = NULL;
+					        _next = NULL;
+					        std::cout << "Null (default constructor) node created" << std::endl;
+					    }//practice default node constructor
 						Node(T data, Node *next) : _data(data), _next(next) {}
 						Node* _next;
 						T _data;
@@ -50,9 +55,21 @@ namespace edu {
 					    std::cout << "copy created" << std::endl;
 					}
 
+					LinkedList(T data){
+					    head = new Node;
+					    head->_data = data;
+					    std::cout << "head data = " << head->_data << std::endl;
+					}//practice constructor
+
 					~LinkedList() {
 					    //destructor. clears list, deletes (deallocate memory) all nodes
+					    //while(head->_next != tail->_next){}//on right track?
+					    /*if(head->_next != NULL) {
+                            delete head->_next;
+                            std::cout<< "next deleted" <<std::endl;
+                        }*/
 					    delete head;
+                        std::cout<< "head deleted" <<std::endl;
 					    delete tail;
 					    std::cout << "head and tail deallocated" << std::endl;
 
@@ -60,9 +77,15 @@ namespace edu {
 
 				public:
 					bool empty() const {
+					    return(head==NULL);
 					    //return true if list empty, false otherwise
 					}
-					T &front() {}
+					T &front() {
+					    return(head->_data);
+					    //return a reference to the value at the front of the list
+					    //is this right?
+
+					}
 					const T &front() const {}
 					T &back() {}
 					const T &back() const {}

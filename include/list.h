@@ -32,13 +32,36 @@ namespace edu {
 					};
 
 				public:
-					LinkedList() {}
-					LinkedList(const LinkedList &other) : _size(0), head(nullptr), tail(nullptr) {}
+					LinkedList() {
+					    //default constructor
+					    head = NULL;
+					    tail = NULL;
+					    _size = 0;
+					    if((head && tail) == NULL) {
+                            std::cout << "_size = " << _size << std::endl;
+                        }
+					}
+					LinkedList(const LinkedList &other) : _size(0), head(nullptr), tail(nullptr) {
+					    //copy constructor, copies list from one list to newly constructed;
+					    head = other.head;
+					    tail = other.tail;
+					    _size = other._size;
+					    //not sure if I did this right just a guess
+					    std::cout << "copy created" << std::endl;
+					}
 
-					~LinkedList() {}
+					~LinkedList() {
+					    //destructor. clears list, deletes (deallocate memory) all nodes
+					    delete head;
+					    delete tail;
+					    std::cout << "head and tail deallocated" << std::endl;
+
+					}
 
 				public:
-					bool empty() const {}
+					bool empty() const {
+					    //return true if list empty, false otherwise
+					}
 					T &front() {}
 					const T &front() const {}
 					T &back() {}

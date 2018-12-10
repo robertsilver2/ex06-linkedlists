@@ -9,11 +9,11 @@ namespace edu {
 				class LinkedList {
 				private:
 					struct Node {
-					    Node(){
+					    /*Node(){
 					        _data = NULL;
 					        _next = NULL;
 					        std::cout << "Null (default constructor) node created" << std::endl;
-					    }//practice default node constructor
+					    }*/ //practice default node constructor
 						Node(T data, Node *next) : _data(data), _next(next) {}
 						Node* _next;
 						T _data;
@@ -46,20 +46,31 @@ namespace edu {
                             std::cout << "_size = " << _size << std::endl;
                         }
 					}
-					LinkedList(const LinkedList &other) : _size(0), head(nullptr), tail(nullptr) {
+					LinkedList(const LinkedList &other) {
 					    //copy constructor, copies list from one list to newly constructed;
-					    head = other.head;
-					    tail = other.tail;
-					    _size = other._size;
-					    //not sure if I did this right just a guess
-					    std::cout << "copy created" << std::endl;
+					    //deep copy
+					    std::cout << "copy constructor entered" << std::endl;
+                        if((other.head && other.tail) == NULL) {
+                            std::cout << "param object NULL" << std::endl;
+                            head=NULL;
+                            tail=NULL;
+                            _size = 0;
+
+                        }else {
+                            std::cout << "parm object not null, copying" << std::endl;
+                            head = new Node(other.head->_data, other.head->_next);
+                            tail = new Node(other.tail->_data, other.tail->_next);
+                            size_t size = other._size;
+                            //not sure if I did this right just a guess
+                            std::cout << "copy created" << std::endl;
+                        }
 					}
 
-					LinkedList(T data){
+					/*LinkedList(T data){
 					    head = new Node;
 					    head->_data = data;
 					    std::cout << "head data = " << head->_data << std::endl;
-					}//practice constructor
+					}*///practice constructor
 
 					~LinkedList() {
 					    //destructor. clears list, deletes (deallocate memory) all nodes
@@ -68,10 +79,14 @@ namespace edu {
                             delete head->_next;
                             std::cout<< "next deleted" <<std::endl;
                         }*/
-					    delete head;
-                        std::cout<< "head deleted" <<std::endl;
-					    delete tail;
-					    std::cout << "head and tail deallocated" << std::endl;
+
+					    //NULL case:
+                        if((head && tail) == NULL) {
+                            delete head;
+                            std::cout << "head deleted" << std::endl;
+                            delete tail;
+                            std::cout << "head and tail deallocated" << std::endl;
+                        }
 
 					}
 
@@ -86,13 +101,26 @@ namespace edu {
 					    //is this right?
 
 					}
-					const T &front() const {}
-					T &back() {}
-					const T &back() const {}
-					size_t size() const {}
+					const T &front() const {
+                        //return a constant reference to the value at the front of the list
+					    return(head->_data);
+					}
+					T &back() {
+					    //return a ref to val back of list
+					    return(head->_data);
+					}
+					const T &back() const {
+					    //return cons ref val back of list
+                        return(head->_data);
+					}
+					size_t size() const {
+					    return(_size)
+					}
 
 				public:
-					iterator begin() {}
+					iterator begin() {
+					    //returns an iterator pointing to the first element of the list
+					}
 					const iterator begin() const {}
 					iterator end() {}
 					const iterator end() const {}

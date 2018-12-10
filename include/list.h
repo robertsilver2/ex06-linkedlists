@@ -9,11 +9,6 @@ namespace edu {
 				class LinkedList {
 				private:
 					struct Node {
-					    /*Node(){
-					        _data = NULL;
-					        _next = NULL;
-					        std::cout << "Null (default constructor) node created" << std::endl;
-					    }*/ //practice default node constructor
 						Node(T data, Node *next) : _data(data), _next(next) {}
 						Node* _next;
 						T _data;
@@ -60,6 +55,8 @@ namespace edu {
                             std::cout << "parm object not null, copying" << std::endl;
                             head = new Node(other.head->_data, other.head->_next);
                             tail = new Node(other.tail->_data, other.tail->_next);
+                            head->_next = tail;
+                            //above: is this the right thing to do? set head next to tail here?
                             size_t size = other._size;
                             //not sure if I did this right just a guess
                             std::cout << "copy created" << std::endl;
@@ -79,7 +76,7 @@ namespace edu {
                             delete head->_next;
                             std::cout<< "next deleted" <<std::endl;
                         }*/
-
+					    //above: should that be in there??
 					    //NULL case:
                         if((head && tail) == NULL) {
                             delete head;
@@ -91,7 +88,9 @@ namespace edu {
 					}
 
 				public:
-					bool empty() const {
+					//i think i got these done
+
+				    bool empty() const {
 					    return(head==NULL);
 					    //return true if list empty, false otherwise
 					}
@@ -130,9 +129,25 @@ namespace edu {
 					iterator insert(iterator where, const T &value) {}
 					iterator erase(iterator where) {}
 					iterator erase(iterator first, iterator last) {}
-					void push_back(const T &value) {}
+					void push_back(const T &value) {
+					    if(head == NULL){
+					        head = new Node(NULL, tail);
+					    }
+					    Node *newFront = new Node(value, head);
+					    head = newFront;
+                        _size+=1;
+					}
 					void pop_back() {}
-					void push_front(const T &value) {}
+					void push_front(const T &value) {
+					    //insert new node to back of list
+					    if(tail==NULL) {
+                            std::cout << "tail is null, function returned no mods" << std::endl;
+                        }else {
+                            Node myBack = new Node(value, NULL);
+                            tail->_next = myBack;
+                            _size += 1;
+                        }
+					}
 					void pop_front() {}
 
 				public:

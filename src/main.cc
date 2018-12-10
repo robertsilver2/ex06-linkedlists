@@ -20,8 +20,10 @@ int main(int argc, char *argv[]) {
         LinkedList<uint64_t> testing1;
         LinkedList<uint64_t> testing2(testing1);
         std::cout << "testing2 empty? " << testing2.empty() << std::endl;
-        //uint64_t testVal = testing1.front();
-        //std::cout << "testing3 head->data = " << testVal <<std::endl;
+        uint64_t testPush1 = 10;
+        testing1.push_back(testPush1);
+        uint64_t testVal = testing1.front();
+        std::cout << "testing1 head->data = " << testVal <<std::endl;
 
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited?" << std::endl;

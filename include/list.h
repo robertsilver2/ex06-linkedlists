@@ -118,10 +118,15 @@ namespace edu {
 
 				public:
 					iterator begin() {
+						return(iterator(head));
 					    //returns an iterator pointing to the first element of the list
 					}
-					const iterator begin() const {}
-					iterator end() {}
+					const iterator begin() const {
+                        return(iterator(head));
+					}
+					iterator end() {
+					    return(iterator(tail));
+					}
 					const iterator end() const {}
 
 				public:
@@ -133,9 +138,10 @@ namespace edu {
 					    if(head == NULL){
 					        head = new Node(NULL, tail);
 					    }
+
 					    Node *newFront = new Node(value, head);
 					    head = newFront;
-                        _size+=1;
+					    _size+=1;
 					}
 					void pop_back() {}
 					void push_front(const T &value) {

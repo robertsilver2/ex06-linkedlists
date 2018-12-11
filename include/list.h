@@ -54,6 +54,9 @@ namespace edu {
                         }else {
                             std::cout << "parm object not null, copying" << std::endl;
                             head = new Node(other.head->_data, other.head->_next);
+                            for(iterator i = other.begin(); i!=other.end(); i++  ){
+                                //
+                            }
                             tail = new Node(other.tail->_data, other.tail->_next);
                             head->_next = tail;
                             //above: is this the right thing to do? set head next to tail here?
@@ -130,17 +133,22 @@ namespace edu {
 					const iterator end() const {}
 
 				public:
-					void clear() {}
+					void clear() {
+					    Node *
+					}
 					iterator insert(iterator where, const T &value) {}
 					iterator erase(iterator where) {}
 					iterator erase(iterator first, iterator last) {}
 					void push_back(const T &value) {
 					    if(head == NULL){
-					        head = new Node(NULL, tail);
-					    }
+					        head = new Node(NULL, NULL);
+					        head->_next = tail;
+					        head->_data = value;
 
-					    Node *newFront = new Node(value, head);
-					    head = newFront;
+					    }else {
+                            Node *newFront = new Node(value, head);
+                            head = newFront;
+                        }
 					    _size+=1;
 					}
 					void pop_back() {}
@@ -149,7 +157,7 @@ namespace edu {
 					    if(tail==NULL) {
                             std::cout << "tail is null, function returned no mods" << std::endl;
                         }else {
-                            Node myBack = new Node(value, NULL);
+                            Node myBack = new Node(NULL, Value);
                             tail->_next = myBack;
                             _size += 1;
                         }

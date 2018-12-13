@@ -37,7 +37,7 @@ namespace edu {
 					    head = NULL;
 					    tail = NULL;
 					    _size = 0;
-					    if((head && tail) == NULL) {
+					    if((head || tail) == NULL) {
                             std::cout << "_size = " << _size << std::endl;
                         }
 					}
@@ -55,7 +55,7 @@ namespace edu {
                             std::cout << "parm object not null, copying" << std::endl;
                             head = new Node(other.head->_data, other.head->_next);
                             for(iterator i = other.begin(); i!=other.end(); i++  ){
-                                //
+
                             }
                             tail = new Node(other.tail->_data, other.tail->_next);
                             head->_next = tail;
@@ -66,27 +66,9 @@ namespace edu {
                         }
 					}
 
-					/*LinkedList(T data){
-					    head = new Node;
-					    head->_data = data;
-					    std::cout << "head data = " << head->_data << std::endl;
-					}*///practice constructor
-
 					~LinkedList() {
 					    //destructor. clears list, deletes (deallocate memory) all nodes
-					    //while(head->_next != tail->_next){}//on right track?
-					    /*if(head->_next != NULL) {
-                            delete head->_next;
-                            std::cout<< "next deleted" <<std::endl;
-                        }*/
-					    //above: should that be in there??
-					    //NULL case:
-                        if((head && tail) == NULL) {
-                            delete head;
-                            std::cout << "head deleted" << std::endl;
-                            delete tail;
-                            std::cout << "head and tail deallocated" << std::endl;
-                        }
+                        clear();
 
 					}
 
@@ -116,7 +98,7 @@ namespace edu {
                         return(head->_data);
 					}
 					size_t size() const {
-					    return(_size)
+					    return(_size);
 					}
 
 				public:
@@ -130,15 +112,38 @@ namespace edu {
 					iterator end() {
 					    return(iterator(tail));
 					}
-					const iterator end() const {}
+					const iterator end() const {
+					    return(iterator(tail));
+					}
 
 				public:
 					void clear() {
-					    Node *
+					   // Node *
+                        erase(head, tail);
+                        delete head;
+                        delete tail;
+                        _size-=2;
 					}
-					iterator insert(iterator where, const T &value) {}
-					iterator erase(iterator where) {}
-					iterator erase(iterator first, iterator last) {}
+					iterator insert(iterator where, const T &value) {
+					    return(nullptr);
+					}
+					iterator erase(iterator where) {
+					    return(nullptr);
+					}
+					iterator erase(iterator first, iterator last) {
+						//std::cout << "get here? line erase else statement" << std::endl;
+                        iterator i = first.node();
+                        while (head != tail){
+                            std::cout << "enter loop? " << std::endl;
+                            Node * temp = i.node();
+                            i++;
+                            head = i.node();
+                            delete temp;
+                            _size -=1;
+                            std::cout << "temp deleted" << std::endl;
+                        }
+                        return head;
+					}
 					void push_back(const T &value) {
 					    if(head == NULL){
 					        head = new Node(NULL, NULL);
@@ -157,7 +162,7 @@ namespace edu {
 					    if(tail==NULL) {
                             std::cout << "tail is null, function returned no mods" << std::endl;
                         }else {
-                            Node myBack = new Node(NULL, Value);
+                            Node * myBack = new Node(value, nullptr);
                             tail->_next = myBack;
                             _size += 1;
                         }

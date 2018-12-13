@@ -22,8 +22,12 @@ int main(int argc, char *argv[]) {
         std::cout << "testing2 empty? " << testing2.empty() << std::endl;
         uint64_t testPush1 = 10;
         testing1.push_back(testPush1);
+        testing1.push_back(testPush1*2);
+        testing1.push_back(testPush1*3);
+
         uint64_t testVal = testing1.front();
         std::cout << "testing1 head->data = " << testVal <<std::endl;
+        testing1.clear();
 
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited?" << std::endl;

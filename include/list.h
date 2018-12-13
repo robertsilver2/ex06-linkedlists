@@ -45,7 +45,9 @@ namespace edu {
 					    //copy constructor, copies list from one list to newly constructed;
 					    //deep copy
 					    std::cout << "copy constructor entered" << std::endl;
-                        if((other.head && other.tail) == NULL) {
+					    //std::cout << "other.head NULL? other.head->data = " << other.front() << std::endl;
+					    std::cout << "other empty?" << other.empty() <<std::endl;
+                        /*if(other.empty()) {
                             std::cout << "param object NULL" << std::endl;
                             head=NULL;
                             tail=NULL;
@@ -53,17 +55,32 @@ namespace edu {
 
                         }else {
                             std::cout << "parm object not null, copying" << std::endl;
-                            head = new Node(other.head->_data, other.head->_next);
-                            for(iterator i = other.begin(); i!=other.end(); i++  ){
+                            head = other.head;
+                            tail = NULL;
+                            _size = 0;
+                            for(iterator i = other.begin(); i.node() != other.tail; i++  ) {
+                                    push_back(*i);
+                                    std::cout << "i data = " << *i << std::endl;
 
-                            }
-                            tail = new Node(other.tail->_data, other.tail->_next);
-                            head->_next = tail;
+                            }*/
+
+
+                            //head->_next = tail;
                             //above: is this the right thing to do? set head next to tail here?
-                            size_t size = other._size;
-                            //not sure if I did this right just a guess
+                            std::cout << (this->begin()==nullptr) <<std::endl;
+                            for(iterator i = other.begin(); i.node() != other.tail; i++) {
+                                std::cout << "i data = " << *i << std::endl;
+                                if(head==NULL){
+                                    push_back(*i);
+                                    std::cout<< "head copied" << std::endl;
+                                }else{
+                                    push_back(*i);
+                                }
+                                //not sure if I did this right just a guess
+                            }
+                            push_back(*other.end());
                             std::cout << "copy created" << std::endl;
-                        }
+
 					}
 
 					~LinkedList() {
@@ -80,25 +97,28 @@ namespace edu {
 					    //return true if list empty, false otherwise
 					}
 					T &front() {
-					    return(head->_data);
+                        std::cout << "front entered" <<std::endl;
+					    return head->_data;
+
 					    //return a reference to the value at the front of the list
 					    //is this right?
 
 					}
 					const T &front() const {
                         //return a constant reference to the value at the front of the list
-					    return(head->_data);
+                        std::cout << "const front entered" <<std::endl;
+                        return head->_data;
 					}
 					T &back() {
 					    //return a ref to val back of list
-					    return(head->_data);
+					    return tail->_data;
 					}
 					const T &back() const {
 					    //return cons ref val back of list
-                        return(head->_data);
+                        return tail->_data;
 					}
 					size_t size() const {
-					    return(_size);
+					    return _size;
 					}
 
 				public:
@@ -146,25 +166,29 @@ namespace edu {
 					}
 					void push_back(const T &value) {
 					    if(head == NULL){
-					        head = new Node(NULL, NULL);
 					        head->_next = tail;
 					        head->_data = value;
 
 					    }else {
                             Node *newFront = new Node(value, head);
                             head = newFront;
+                            _size+=1;
                         }
-					    _size+=1;
+
 					}
 					void pop_back() {}
 					void push_front(const T &value) {
 					    //insert new node to back of list
 					    if(tail==NULL) {
+					        tail->_next=NULL;
+					        tail->_data = value;
                             std::cout << "tail is null, function returned no mods" << std::endl;
                         }else {
                             Node * myBack = new Node(value, nullptr);
                             tail->_next = myBack;
+                            tail = myback;
                             _size += 1;
+
                         }
 					}
 					void pop_front() {}

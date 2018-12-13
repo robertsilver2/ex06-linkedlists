@@ -27,7 +27,11 @@ int main(int argc, char *argv[]) {
 
         uint64_t testVal = testing1.front();
         std::cout << "testing1 head->data = " << testVal <<std::endl;
+        LinkedList<uint64_t> testing3(testing1);
         testing1.clear();
+        testing2.clear();
+        testing3.clear();
+
 
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited?" << std::endl;

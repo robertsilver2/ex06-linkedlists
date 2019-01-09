@@ -44,18 +44,14 @@ namespace edu {
 					    //copy constructor, copies list from one list to newly constructed;
 					    //deep copy
 					    std::cout << "copy constructor entered" << std::endl;
-					    //std::cout << "other.head NULL? other.head->data = " << other.front() << std::endl;
 					    std::cout << "other empty?" << other.empty() <<std::endl;
-
-                            //std::cout << (this->front()==NULL) <<std::endl;
-                            iterator i = other.begin();
-                            while(i.node() != other.tail->_next) {
-                                std::cout << "i data = " << *i << std::endl;
-                                push_front(*i);
-                                i++;
-                                //not sure if I did this right just a guess
-                            }
-                            std::cout << "copy created" << std::endl;
+					    iterator i = other.begin();
+					    for(int j = 0; j<other.size(); j++){
+                            push_back(*i);
+                            i++;
+                            //not sure if I did this right just a guess
+                        }
+                        std::cout << "copy created" << std::endl;
 
 					}
 
@@ -126,22 +122,19 @@ namespace edu {
 					}
 					iterator erase(iterator first, iterator last) {
 						//std::cout << "get here? line erase else statement" << std::endl;
-                        if((head!=NULL)&&(tail!=NULL)){
-                            iterator i = first.node();
-                            while (_size>0) {
-                                std::cout << "enter loop? " << std::endl;
-                                printList();
-                                std::cout << "_size= " <<_size << std::endl;
-                                Node *temp = i.node();
-                                i++;
-                                head = i.node();
-                                delete temp;
-                                std::cout << "temp deleted" << std::endl;
-                                _size -= 1;
-                            }
+						iterator i = first.node();
+                        while (_size>0) {
+                            std::cout << "enter loop? " << std::endl;
+                            printList();
                             std::cout << "_size= " <<_size << std::endl;
-
+                            Node *temp = i.node();
+                            i++;
+                            head = i.node();
+                            delete temp;
+                            std::cout << "temp deleted" << std::endl;
+                            _size -= 1;
                         }
+                        std::cout << "_size= " <<_size << std::endl;
                         return nullptr;
 					}
 					void push_back(const T &value) {

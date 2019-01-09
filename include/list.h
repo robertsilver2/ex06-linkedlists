@@ -37,9 +37,8 @@ namespace edu {
 					    head = NULL;
 					    tail = NULL;
 					    _size = 0;
-					    if((head || tail) == NULL) {
-                            std::cout << "_size = " << _size << std::endl;
-                        }
+					    std::cout << "_size = " << _size << std::endl;
+
 					}
 					LinkedList(const LinkedList &other) {
 					    //copy constructor, copies list from one list to newly constructed;
@@ -47,44 +46,27 @@ namespace edu {
 					    std::cout << "copy constructor entered" << std::endl;
 					    //std::cout << "other.head NULL? other.head->data = " << other.front() << std::endl;
 					    std::cout << "other empty?" << other.empty() <<std::endl;
-                        /*if(other.empty()) {
-                            std::cout << "param object NULL" << std::endl;
-                            head=NULL;
-                            tail=NULL;
-                            _size = 0;
 
-                        }else {
-                            std::cout << "parm object not null, copying" << std::endl;
-                            head = other.head;
-                            tail = NULL;
-                            _size = 0;
-                            for(iterator i = other.begin(); i.node() != other.tail; i++  ) {
-                                    push_back(*i);
-                                    std::cout << "i data = " << *i << std::endl;
-
-                            }*/
-
-
-                            //head->_next = tail;
-                            //above: is this the right thing to do? set head next to tail here?
-                            std::cout << (this->begin()==nullptr) <<std::endl;
-                            for(iterator i = other.begin(); i.node() != other.tail; i++) {
+                            //std::cout << (this->front()==NULL) <<std::endl;
+                            iterator i = other.begin();
+                            while(i.node() != other.tail->_next) {
                                 std::cout << "i data = " << *i << std::endl;
-                                if(head==NULL){
-                                    push_back(*i);
-                                    std::cout<< "head copied" << std::endl;
-                                }else{
-                                    push_back(*i);
-                                }
+                                push_back(*i);
+                                i++;
                                 //not sure if I did this right just a guess
                             }
-                            push_back(*other.end());
                             std::cout << "copy created" << std::endl;
 
 					}
 
 					~LinkedList() {
 					    //destructor. clears list, deletes (deallocate memory) all nodes
+					    if((head ==NULL) && (tail == NULL)){
+					        delete head;
+					        delete tail;
+
+
+					    }
                         clear();
 
 					}
@@ -148,17 +130,19 @@ namespace edu {
 					}
 					iterator erase(iterator first, iterator last) {
 						//std::cout << "get here? line erase else statement" << std::endl;
-                        iterator i = first.node();
-                        while (head != tail){
-                            std::cout << "enter loop? " << std::endl;
-                            Node * temp = i.node();
-                            i++;
-                            head = i.node();
-                            delete temp;
-                            _size -=1;
-                            std::cout << "temp deleted" << std::endl;
+                        if((head!=NULL)&&(tail!=NULL)){
+                            iterator i = first.node();
+                            while (head != tail) {
+                                std::cout << "enter loop? " << std::endl;
+                                Node *temp = i.node();
+                                i++;
+                                head = i.node();
+                                delete temp;
+                                _size -= 1;
+                                std::cout << "temp deleted" << std::endl;
+                            }
                         }
-                        return head;
+                        return nullptr;
 					}
 					void push_back(const T &value) {
 					    if(head == NULL){
@@ -194,6 +178,18 @@ namespace edu {
 
 				public:
 					void swap(LinkedList &other) {}
+
+				public:
+				    void printList(){
+					    iterator i = head;
+					    int j = 0;
+					    while(j<_size){
+					        std::cout << " [" << *i << "]" ;
+					        i++;
+					        j++;
+					    }
+                        std::cout<<std::endl;
+					}
 
 				private:
 					Node *head;

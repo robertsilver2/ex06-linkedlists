@@ -18,19 +18,24 @@ int main(int argc, char *argv[]) {
     //LinkedList test1;
     for(int i= 0; i<1; i++) {
         LinkedList<uint64_t> testing1;
-        LinkedList<uint64_t> testing2(testing1);
+        //LinkedList<uint64_t> testing2(testing1);
+        LinkedList<uint64_t> testing2;
         std::cout << "testing2 empty? " << testing2.empty() << std::endl;
+
+
+
         uint64_t testPush1 = 10;
         testing1.push_back(testPush1);
+        std::cout << "testpush1 1 passed" << std::endl;
         testing1.push_back(testPush1*2);
         testing1.push_back(testPush1*3);
-
+        std::cout << "testing1 front = " << testing1.front() <<std::endl;
         uint64_t testVal = testing1.front();
         std::cout << "testing1 head->data = " << testVal <<std::endl;
-        LinkedList<uint64_t> testing3(testing1);
+        //LinkedList<uint64_t> testing3(testing1);
         testing1.clear();
         testing2.clear();
-        testing3.clear();
+        //testing3.clear();
 
 
     }//put in a loop so object lifetime will end before end of main, test destructor

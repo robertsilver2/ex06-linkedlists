@@ -166,10 +166,15 @@ namespace edu {
 					}
 					void push_back(const T &value) {
 					    if(head == NULL){
-					        head->_next = tail;
-					        head->_data = value;
+                            std::cout << "pushback null if entered" << std::endl;
+					        head = new Node(value, tail);
+					        //head->_data = value;
+					        std::cout << "head->_data = " << head->_data << std::endl;
+                            //head->_next = tail;
+					        _size+=1;
 
 					    }else {
+					        std::cout << "pushback non null entered" << std::endl;
                             Node *newFront = new Node(value, head);
                             head = newFront;
                             _size+=1;

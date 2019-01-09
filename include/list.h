@@ -138,11 +138,7 @@ namespace edu {
 
 				public:
 					void clear() {
-					   // Node *
                         erase(head, tail);
-                        delete head;
-                        delete tail;
-                        _size-=2;
 					}
 					iterator insert(iterator where, const T &value) {
 					    return(nullptr);
@@ -168,6 +164,8 @@ namespace edu {
 					    if(head == NULL){
                             std::cout << "pushback null if entered" << std::endl;
 					        head = new Node(value, tail);
+					        tail = head;
+					        tail->_next=nullptr;
 					        //head->_data = value;
 					        std::cout << "head->_data = " << head->_data << std::endl;
                             //head->_next = tail;
@@ -184,17 +182,13 @@ namespace edu {
 					void pop_back() {}
 					void push_front(const T &value) {
 					    //insert new node to back of list
-					    if(tail==NULL) {
-					        tail->_next=NULL;
-					        tail->_data = value;
-                            std::cout << "tail is null, function returned no mods" << std::endl;
-                        }else {
+
                             Node * myBack = new Node(value, nullptr);
                             tail->_next = myBack;
                             tail = myback;
                             _size += 1;
 
-                        }
+
 					}
 					void pop_front() {}
 

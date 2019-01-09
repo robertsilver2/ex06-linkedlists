@@ -22,14 +22,14 @@ int main(int argc, char *argv[]) {
         LinkedList<uint64_t> testing2;
         std::cout << "testing2 empty? " << testing2.empty() << std::endl;
 
-
+        //std::cout << "testing1 front = " << testing1.front() <<std::endl;
 
         uint64_t testPush1 = 10;
         testing1.push_back(testPush1);
         std::cout << "testpush1 1 passed" << std::endl;
         testing1.push_back(testPush1*2);
         testing1.push_back(testPush1*3);
-        std::cout << "testing1 front = " << testing1.front() <<std::endl;
+
         uint64_t testVal = testing1.front();
         std::cout << "testing1 head->data = " << testVal <<std::endl;
         //LinkedList<uint64_t> testing3(testing1);

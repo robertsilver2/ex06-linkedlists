@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
     //LinkedList test1;
     for(int i= 0; i<1; i++) {
         LinkedList<uint64_t> testing1;
+        testing1.printList();
         uint64_t testPush1 = 10;
         testing1.push_back(testPush1);
         testing1.push_back(testPush1*2);
@@ -27,6 +28,8 @@ int main(int argc, char *argv[]) {
         LinkedList<uint64_t> testing2(testing1);
         std::cout<< "print testing2: " <<std::endl;
         testing2.printList();
+        //testing1.clear();
+        //LinkedList<uint64_t> testing3;
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited?" << std::endl;
 }

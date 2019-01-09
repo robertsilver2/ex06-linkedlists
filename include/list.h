@@ -51,7 +51,7 @@ namespace edu {
                             iterator i = other.begin();
                             while(i.node() != other.tail->_next) {
                                 std::cout << "i data = " << *i << std::endl;
-                                push_back(*i);
+                                push_front(*i);
                                 i++;
                                 //not sure if I did this right just a guess
                             }
@@ -61,13 +61,9 @@ namespace edu {
 
 					~LinkedList() {
 					    //destructor. clears list, deletes (deallocate memory) all nodes
-					    if((head ==NULL) && (tail == NULL)){
-					        delete head;
-					        delete tail;
-
-
-					    }
-                        clear();
+					    if(head!=NULL) {
+                            clear();
+                        }
 
 					}
 
@@ -132,46 +128,51 @@ namespace edu {
 						//std::cout << "get here? line erase else statement" << std::endl;
                         if((head!=NULL)&&(tail!=NULL)){
                             iterator i = first.node();
-                            while (head != tail) {
+                            while (_size>0) {
                                 std::cout << "enter loop? " << std::endl;
+                                printList();
+                                std::cout << "_size= " <<_size << std::endl;
                                 Node *temp = i.node();
                                 i++;
                                 head = i.node();
                                 delete temp;
-                                _size -= 1;
                                 std::cout << "temp deleted" << std::endl;
+                                _size -= 1;
                             }
+                            std::cout << "_size= " <<_size << std::endl;
+
                         }
                         return nullptr;
 					}
 					void push_back(const T &value) {
 					    if(head == NULL){
-                            std::cout << "pushback null if entered" << std::endl;
 					        head = new Node(value, tail);
 					        tail = head;
 					        tail->_next=nullptr;
-					        //head->_data = value;
-					        std::cout << "head->_data = " << head->_data << std::endl;
-                            //head->_next = tail;
 					        _size+=1;
+                            printList();
+                            std::cout << "_size= " <<_size << std::endl;
 
 					    }else {
-					        std::cout << "pushback non null entered" << std::endl;
                             Node *newFront = new Node(value, head);
                             head = newFront;
                             _size+=1;
+                            printList();
+                            std::cout << "_size= " <<_size << std::endl;
                         }
 
 					}
 					void pop_back() {}
 					void push_front(const T &value) {
 					    //insert new node to back of list
-
-                            Node * myBack = new Node(value, nullptr);
-                            tail->_next = myBack;
-                            tail = myback;
-                            _size += 1;
-
+                            if(tail == NULL){
+                                push_back(value);
+                            }else {
+                                Node *myBack = new Node(value, nullptr);
+                                tail->_next = myBack;
+                                tail = myBack;
+                                _size += 1;
+                            }
 
 					}
 					void pop_front() {}
@@ -182,11 +183,9 @@ namespace edu {
 				public:
 				    void printList(){
 					    iterator i = head;
-					    int j = 0;
-					    while(j<_size){
+                        for(int j = 0; j<_size; j++){
 					        std::cout << " [" << *i << "]" ;
 					        i++;
-					        j++;
 					    }
                         std::cout<<std::endl;
 					}

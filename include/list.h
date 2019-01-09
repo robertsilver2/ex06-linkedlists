@@ -112,6 +112,7 @@ namespace edu {
 
 				public:
 					void clear() {
+					    std::cout << "clear entered" << std::endl;
                         erase(head, tail);
 					}
 					iterator insert(iterator where, const T &value) {

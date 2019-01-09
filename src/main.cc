@@ -29,7 +29,12 @@ int main(int argc, char *argv[]) {
         std::cout<< "print testing2: " <<std::endl;
         testing2.printList();
         //testing1.clear();
+        //testing2.clear();
+        //if you uncomment out the two lines above and run the
+        //program, "clear entered" prints 3 times instead of 2?
+
         //LinkedList<uint64_t> testing3;
+        //uncomment above line and no longer runs
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited?" << std::endl;
 }

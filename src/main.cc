@@ -33,7 +33,11 @@ int main(int argc, char *argv[]) {
         //if you uncomment out the two lines above and run the
         //program, "clear entered" prints 3 times instead of 2?
 
-        //LinkedList<uint64_t> testing3;
+        LinkedList<uint64_t> testing3(testing2);
+        testing3.printList();
+        std::cout << "testing3 front is " << testing3.front() << std::endl;
+        std::cout << "testing3 back is " << testing3.back() << std::endl;
+        std::cout << "testing3 size is " << testing3.size() << std::endl;
         //uncomment above line and no longer runs
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited?" << std::endl;

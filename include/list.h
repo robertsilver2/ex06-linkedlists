@@ -83,11 +83,11 @@ namespace edu {
 					//i think i got these done
 
 				    bool empty() const {
-					    return(head==NULL);
+					    return(_size==0);
 					    //return true if list empty, false otherwise
 					}
+
 					T &front() {
-                        std::cout << "front entered" <<std::endl;
 					    return head->_data;
 
 					    //return a reference to the value at the front of the list
@@ -96,9 +96,9 @@ namespace edu {
 					}
 					const T &front() const {
                         //return a constant reference to the value at the front of the list
-                        std::cout << "const front entered" <<std::endl;
                         return head->_data;
 					}
+
 					T &back() {
 					    //return a ref to val back of list
 					    return tail->_data;
@@ -107,6 +107,7 @@ namespace edu {
 					    //return cons ref val back of list
                         return tail->_data;
 					}
+
 					size_t size() const {
 					    return _size;
 					}
@@ -119,6 +120,7 @@ namespace edu {
 					const iterator begin() const {
                         return(iterator(head));
 					}
+
 					iterator end() {
 					    return(iterator(tail));
 					}
@@ -131,9 +133,11 @@ namespace edu {
 					    std::cout << "clear entered" << std::endl;
                         erase(head, tail);
 					}
+
 					iterator insert(iterator where, const T &value) {
 					    return(nullptr);
 					}
+
 					iterator erase(iterator where) {
 					    return(nullptr);
 					}
@@ -141,52 +145,44 @@ namespace edu {
 						//std::cout << "get here? line erase else statement" << std::endl;
 						iterator i = first.node();
                         while (_size>0) {
-                            std::cout << "enter loop? " << std::endl;
-                            printList();
-                            std::cout << "_size= " <<_size << std::endl;
                             Node *temp = i.node();
                             i++;
                             head = i.node();
                             delete temp;
-                            std::cout << "temp deleted" << std::endl;
                             _size -= 1;
                         }
                         std::cout << "_size= " <<_size << std::endl;
                         return nullptr;
 					}
+
 					void push_back(const T &value) {
 					    if(head == NULL){
 					        head = new Node(value, tail);
 					        tail = head;
 					        tail->_next=nullptr;
 					        _size+=1;
-                            std::cout << "NULL pushback _size= " <<_size << std::endl;
-                            printList();
-
 
 					    }else {
                             Node *newFront = new Node(value, head);
                             head = newFront;
                             _size+=1;
-                            std::cout << "_size= " <<_size << std::endl;
-                            printList();
-
                         }
-
 					}
+
 					void pop_back() {}
+
 					void push_front(const T &value) {
 					    //insert new node to back of list
-                            if(tail == NULL){
-                                push_back(value);
-                            }else {
-                                Node *myBack = new Node(value, nullptr);
-                                tail->_next = myBack;
-                                tail = myBack;
-                                _size += 1;
-                            }
-
+                        if(tail == NULL){
+                            push_back(value);
+                        }else {
+                            Node *myBack = new Node(value, nullptr);
+                            tail->_next = myBack;
+                            tail = myBack;
+                            _size += 1;
+                        }
 					}
+
 					void pop_front() {}
 
 				public:

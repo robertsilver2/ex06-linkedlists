@@ -213,7 +213,19 @@ namespace edu {
 					}
 
 				public:
-					void swap(LinkedList &other) {}
+					void swap(LinkedList &other) {
+					    std::cout << "swap entered" << std::endl;
+					    Node* tempH = head;
+					    Node* tempT = tail;
+					    std::cout << "tempH value " << front() << std::endl;
+					    size_t tempSize = size();
+					    head = other.head;
+					    tail= other.tail;
+					    _size = other.size();
+					    other.head = tempH;
+					    other.tail = tempT;
+					    other._size = tempSize;
+					}
 
 				public:
 				    void printList(){

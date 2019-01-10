@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
         LinkedList<uint64_t> testing2(testing1);
         std::cout<< "print testing2: " <<std::endl;
         testing2.printList();
+
         LinkedList<uint64_t> testing3(testing2);
         testing3.printList();
         std::cout << "testing3 front is " << testing3.front() << std::endl;
@@ -39,6 +40,25 @@ int main(int argc, char *argv[]) {
         testing3.pop_front();
         std::cout << "testing3 front is " << testing3.front() << std::endl;
         testing3.printList();
+
+        LinkedList<uint64_t> testing4;
+        testing4.push_back(32);
+        testing4.push_back(2);
+        testing4.push_back(101);
+        testing4.push_back(29);
+        std::cout << "testing4: " << std::endl;
+        testing4.printList();
+        std::cout << "testing1: " << std::endl;
+        testing1.printList();
+        testing4.swap(testing1);
+        std::cout << "swap done:" << std::endl;
+        std::cout << "testing4: " << std::endl;
+        testing4.printList();
+        std::cout << "testing1: " << std::endl;
+        testing1.printList();
+
+
+
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited" << std::endl;
 }

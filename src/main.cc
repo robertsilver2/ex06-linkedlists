@@ -61,4 +61,5 @@ int main(int argc, char *argv[]) {
 
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited" << std::endl;
+    std::cout << "done??" << std::endl;
 }

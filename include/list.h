@@ -57,6 +57,10 @@ namespace edu {
 					    //deep copy
 					    std::cout << "copy constructor entered" << std::endl;
 					    std::cout << "other empty?" << other.empty() <<std::endl;
+                        head=NULL;
+                        tail=NULL;
+                        _size=0;
+                        std::cout << "head and tail nullified" << std::endl;
 					    iterator i = other.begin();
 					    for(int j = 0; j<other.size(); j++){
                             push_back(*i);
@@ -156,15 +160,17 @@ namespace edu {
 					        tail = head;
 					        tail->_next=nullptr;
 					        _size+=1;
+                            std::cout << "NULL pushback _size= " <<_size << std::endl;
                             printList();
-                            std::cout << "_size= " <<_size << std::endl;
+
 
 					    }else {
                             Node *newFront = new Node(value, head);
                             head = newFront;
                             _size+=1;
-                            printList();
                             std::cout << "_size= " <<_size << std::endl;
+                            printList();
+
                         }
 
 					}
@@ -188,10 +194,14 @@ namespace edu {
 
 				public:
 				    void printList(){
-					    iterator i = head;
-                        for(int j = 0; j<_size; j++){
-					        std::cout << " [" << *i << "]" ;
-					        i++;
+					    if (!this->empty()) {
+                            iterator i = head;
+                            for (int j = 0; j < _size; j++) {
+                                std::cout << " [" << *i << "]";
+                                i++;
+                            }
+                        }else{
+					        std::cout << "list to print is empty" <<std::endl;
 					    }
                         std::cout<<std::endl;
 					}

@@ -28,11 +28,6 @@ int main(int argc, char *argv[]) {
         LinkedList<uint64_t> testing2(testing1);
         std::cout<< "print testing2: " <<std::endl;
         testing2.printList();
-        //testing1.clear();
-        //testing2.clear();
-        //if you uncomment out the two lines above and run the
-        //program, "clear entered" prints 3 times instead of 2?
-
         LinkedList<uint64_t> testing3(testing2);
         testing3.printList();
         std::cout << "testing3 front is " << testing3.front() << std::endl;
@@ -41,8 +36,9 @@ int main(int argc, char *argv[]) {
         testing3.pop_back();
         std::cout << "testing3 back is " << testing3.back() << std::endl;
         testing3.printList();
-
-        //uncomment above line and no longer runs
+        testing3.pop_front();
+        std::cout << "testing3 front is " << testing3.front() << std::endl;
+        testing3.printList();
     }//put in a loop so object lifetime will end before end of main, test destructor
-    std::cout << "loop exited?" << std::endl;
+    std::cout << "loop exited" << std::endl;
 }

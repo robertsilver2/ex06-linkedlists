@@ -134,11 +134,11 @@ namespace edu {
 					}
 
 					iterator insert(iterator where, const T &value) {
-
+                        return nullptr;
 					}
 
 					iterator erase(iterator where) {
-					    return(nullptr);
+					    return nullptr;
 					}
 					iterator erase(iterator first, iterator last) {
 						//std::cout << "get here? line erase else statement" << std::endl;
@@ -169,18 +169,15 @@ namespace edu {
 					}
 
 					void pop_back() {
-					    std::cout << "popback entered" << std::endl;
+                        std::cout << "popback entered" << std::endl;
 					    iterator i = head;
-					    std::cout<< "popback it i val = " << *i << std::endl;
 					    while(i.node()->_next!=tail){
 					        i++;
 					    }
-                        std::cout<< "popback it i val = " << *i << std::endl;
 					    Node* temp = tail;
 					    tail = i.node();
 					    delete temp;
 					    _size-=1;
-					    std::cout << "temp deleted popback" << std::endl;
 
 					}
 
@@ -196,7 +193,15 @@ namespace edu {
                         }
 					}
 
-					void pop_front() {}
+					void pop_front() {
+                        std::cout << "popfront entered" << std::endl;
+                        Node* temp = head;
+                        Node* temp2 = head->_next;
+                        head = temp2;
+                        delete temp;
+                        _size-=1;
+                        std::cout << "temp deleted popfront" << std::endl;
+					}
 
 				public:
 					void swap(LinkedList &other) {}

@@ -134,11 +134,20 @@ namespace edu {
 					}
 
 					iterator insert(iterator where, const T &value) {
+                        Node* temp = where.node()->_next;
+                        Node* input = new Node(value, temp);
+                        where.node()->_next = input;
                         return nullptr;
 					}
 
 					iterator erase(iterator where) {
-					    return nullptr;
+					    iterator i = head
+                        while(i.node()->next!=where.node()){
+                            i++
+                        }
+                        i.node()->next = where.node()->_next;
+                        delete where.node();
+                        return nullptr;
 					}
 					iterator erase(iterator first, iterator last) {
 						//std::cout << "get here? line erase else statement" << std::endl;

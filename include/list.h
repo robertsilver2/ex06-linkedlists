@@ -32,7 +32,7 @@ namespace edu {
 						iterator(const iterator &other) : _node(other._node) {}
 
 					public:
-						const T &operator*() { return _node->_data; }
+					    const T &operator*() { return _node->_data; }
 						const T &operator*() const { return _node->_data; }
 						iterator &operator++() { _node = _node->_next; return *this; }
 						iterator operator++(int) { iterator before(*this); _node = _node->_next; return before; }
@@ -70,7 +70,6 @@ namespace edu {
                         std::cout << "copy created" << std::endl;
 
 					}
-
 					~LinkedList() {
 					    //destructor. clears list, deletes (deallocate memory) all nodes
 					    if(head!=NULL) {
@@ -135,7 +134,7 @@ namespace edu {
 					}
 
 					iterator insert(iterator where, const T &value) {
-					    return(nullptr);
+
 					}
 
 					iterator erase(iterator where) {
@@ -169,7 +168,21 @@ namespace edu {
                         }
 					}
 
-					void pop_back() {}
+					void pop_back() {
+					    std::cout << "popback entered" << std::endl;
+					    iterator i = head;
+					    std::cout<< "popback it i val = " << *i << std::endl;
+					    while(i.node()->_next!=tail){
+					        i++;
+					    }
+                        std::cout<< "popback it i val = " << *i << std::endl;
+					    Node* temp = tail;
+					    tail = i.node();
+					    delete temp;
+					    _size-=1;
+					    std::cout << "temp deleted popback" << std::endl;
+
+					}
 
 					void push_front(const T &value) {
 					    //insert new node to back of list

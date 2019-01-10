@@ -38,6 +38,10 @@ int main(int argc, char *argv[]) {
         std::cout << "testing3 front is " << testing3.front() << std::endl;
         std::cout << "testing3 back is " << testing3.back() << std::endl;
         std::cout << "testing3 size is " << testing3.size() << std::endl;
+        testing3.pop_back();
+        std::cout << "testing3 back is " << testing3.back() << std::endl;
+        testing3.printList();
+
         //uncomment above line and no longer runs
     }//put in a loop so object lifetime will end before end of main, test destructor
     std::cout << "loop exited?" << std::endl;
